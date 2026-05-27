@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+        AI-Based Plagiarism Detection
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static',
+        filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        AI-Based Plagiarism Detection System
+    </h1>
+
+    <h2>
+        Using Pattern Searching Algorithms
+    </h2>
+
+    <form
+        action="/search"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <input
+            type="file"
+            name="file"
+            required
+        >
+
+        <input
+            type="text"
+            name="pattern"
+            placeholder="Enter keyword or phrase"
+            required
+        >
+
+        <select name="algorithm">
+
+            <option value="naive">
+                Naive Search
+            </option>
+
+            <option value="kmp">
+                KMP Algorithm
+            </option>
+
+            <option value="rabin">
+                Rabin-Karp Algorithm
+            </option>
+
+            <option value="boyer">
+                Boyer-Moore Algorithm
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Scan Document
+        </button>
+
+    </form>
+
+    {% if total_matches is defined %}
+
+    <div class="result">
+
+        <h2>
+            Plagiarism Analysis Result
+        </h2>
+
+        <p>
+            <strong>
+                Selected Algorithm:
+            </strong>
+
+            {{ selected_algorithm }}
+        </p>
+
+        <p>
+            <strong>
+                Total Matches Found:
+            </strong>
+
+            {{ total_matches }}
+        </p>
+
+        <p>
+            <strong>
+                Match Positions:
+            </strong>
+
+            {{ positions }}
+        </p>
+
+        <p>
+            <strong>
+                Execution Time:
+            </strong>
+
+            {{ execution_time }} sec
+        </p>
+
+        <p>
+            <strong>
+                Memory Used:
+            </strong>
+
+            {{ memory_used }} KB
+        </p>
+
+        <p>
+            <strong>
+                Plagiarism Percentage:
+            </strong>
+
+            {{ plagiarism_percentage }}%
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
